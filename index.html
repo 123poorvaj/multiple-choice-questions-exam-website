@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Exam Platform</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1>MCQ Exam Platform</h1>
+        <nav class="nav">
+          <button id="teacherBtn" class="nav-btn active">Teacher Portal</button>
+          <button id="studentBtn" class="nav-btn">Student Portal</button>
+        </nav>
+      </header>
+
+      <main class="main">
+        <!-- Teacher Block -->
+        <section id="teacherBlock" class="block active">
+          <div class="container">
+            <h2>Teacher Portal</h2>
+            <div class="teacher-content">
+              <div class="question-form">
+                <h3>Add New Question</h3>
+                <form id="questionForm">
+                  <div class="form-group">
+                    <label for="questionText">Question:</label>
+                    <textarea id="questionText" placeholder="Enter your question here..." required></textarea>
+                  </div>
+                  
+                  <div class="options-container">
+                    <h4>Options:</h4>
+                    <div class="option-group">
+                      <input type="text" id="option1" placeholder="Option A" required>
+                      <input type="radio" name="correctAnswer" value="0" id="correct1">
+                      <label for="correct1">Correct</label>
+                    </div>
+                    <div class="option-group">
+                      <input type="text" id="option2" placeholder="Option B" required>
+                      <input type="radio" name="correctAnswer" value="1" id="correct2">
+                      <label for="correct2">Correct</label>
+                    </div>
+                    <div class="option-group">
+                      <input type="text" id="option3" placeholder="Option C" required>
+                      <input type="radio" name="correctAnswer" value="2" id="correct3">
+                      <label for="correct3">Correct</label>
+                    </div>
+                    <div class="option-group">
+                      <input type="text" id="option4" placeholder="Option D" required>
+                      <input type="radio" name="correctAnswer" value="3" id="correct4">
+                      <label for="correct4">Correct</label>
+                    </div>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Add Question</button>
+                </form>
+              </div>
+              
+              <div class="questions-list">
+                <h3>Added Questions</h3>
+                <div id="questionsList" class="questions-container">
+                  <p class="no-questions">No questions added yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Student Block -->
+        <section id="studentBlock" class="block">
+          <div class="container">
+            <h2>Student Portal</h2>
+            <div class="student-content">
+              <div class="test-header">
+                <div class="test-info">
+                  <span id="questionCount">0 questions available</span>
+                  <button id="startTestBtn" class="btn btn-success" disabled>Start Practice Test</button>
+                </div>
+              </div>
+              
+              <div id="testContainer" class="test-container hidden">
+                <div class="test-progress">
+                  <span id="currentQuestion">Question 1</span>
+                  <span id="totalQuestions">of 0</span>
+                </div>
+                
+                <div class="question-display">
+                  <h3 id="displayQuestion"></h3>
+                  <div id="optionsDisplay" class="options-display"></div>
+                </div>
+                
+                <div class="test-controls">
+                  <button id="prevBtn" class="btn btn-secondary" disabled>Previous</button>
+                  <button id="nextBtn" class="btn btn-primary" disabled>Next</button>
+                  <button id="submitTestBtn" class="btn btn-success hidden">Submit Test</button>
+                </div>
+              </div>
+              
+              <div id="resultsContainer" class="results-container hidden">
+                <h3>Test Results</h3>
+                <div id="scoreDisplay" class="score-display"></div>
+                <div id="answersReview" class="answers-review"></div>
+                <button id="retakeTestBtn" class="btn btn-primary">Take Test Again</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
