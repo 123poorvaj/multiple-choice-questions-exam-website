@@ -369,3 +369,4 @@ document.head.appendChild(style);
 
 // Make deleteQuestion available globally
 window.deleteQuestion = deleteQuestion;
+window.selectOption = selectOption;
