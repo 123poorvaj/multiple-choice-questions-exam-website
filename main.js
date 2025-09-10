@@ -1,10 +1,14 @@
 // Application state
+let currentRole = null;
 let questions = [];
 let currentQuestionIndex = 0;
 let userAnswers = [];
 let testStarted = false;
 
 // DOM elements
+const roleSelection = document.getElementById('roleSelection');
+const headerTitle = document.getElementById('headerTitle');
+const switchRoleBtn = document.getElementById('switchRoleBtn');
 const teacherBtn = document.getElementById('teacherBtn');
 const studentBtn = document.getElementById('studentBtn');
 const teacherBlock = document.getElementById('teacherBlock');
@@ -18,6 +22,7 @@ const resultsContainer = document.getElementById('resultsContainer');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
+  showRoleSelection();
   loadQuestions();
   updateQuestionCount();
   setupEventListeners();
@@ -25,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Event listeners setup
 function setupEventListeners() {
+  // Role selection and switching
+  switchRoleBtn.addEventListener('click', showRoleSelection);
+  
   // Navigation
   teacherBtn.addEventListener('click', () => switchTab('teacher'));
   studentBtn.addEventListener('click', () => switchTab('student'));
@@ -38,6 +46,31 @@ function setupEventListeners() {
   document.getElementById('nextBtn').addEventListener('click', nextQuestion);
   document.getElementById('submitTestBtn').addEventListener('click', submitTest);
   document.getElementById('retakeTestBtn').addEventListener('click', retakeTest);
+}
+
+// Role selection functionality
+function showRoleSelection() {
+  roleSelection.style.display = 'flex';
+  document.querySelector('.header').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  currentRole = null;
+}
+
+function selectRole(role) {
+  currentRole = role;
+  roleSelection.style.display = 'none';
+  document.querySelector('.header').style.display = 'block';
+  document.querySelector('.main').style.display = 'block';
+  
+  if (role === 'teacher') {
+    headerTitle.textContent = 'Teacher Portal - MCQ Exam Platform';
+    switchTab('teacher');
+    document.querySelector('.nav').classList.add('hidden');
+  } else {
+    headerTitle.textContent = 'Student Portal - MCQ Exam Platform';
+    switchTab('student');
+    document.querySelector('.nav').classList.add('hidden');
+  }
 }
 
 // Tab switching
@@ -370,3 +403,4 @@ document.head.appendChild(style);
 // Make deleteQuestion available globally
 window.deleteQuestion = deleteQuestion;
 window.selectOption = selectOption;
+window.selectRole = selectRole;
